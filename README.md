@@ -1,16 +1,45 @@
-# health_care_app
+# Health Care App
 
-A new Flutter project.
+### Project was made by Sharky Nguyen [sharkynguyenle@gmail.com]
 
-## Getting Started
+## Design url
 
-This project is a starting point for a Flutter application.
+[Design](https://www.figma.com/design/otEZKBhhYjj0Vy9ZjbIGU0/Health-Care-App?node-id=0-90&node-type=frame&t=Ovw7CarScsH0ajDG-0)
 
-A few resources to get you started if this is your first Flutter project:
+## Generate config files before run project [Step by step]
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Step 1
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter clean
+```
+
+### Step 2
+
+```bash
+flutter pub get
+```
+
+### Step 3
+
+```bash
+flutter pub run build_runner build --delete-conflicting-outputs
+```
+
+### Step 4
+
+```bash
+flutter gen-l10n
+```
+
+## Watch the files' system for edits
+
+```bash
+flutter packages pub run build_runner watch
+```
+
+## Generate assets
+
+```bash
+fluttergen -c pubspec.yaml
+```
