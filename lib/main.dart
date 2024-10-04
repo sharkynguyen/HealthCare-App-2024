@@ -1,15 +1,14 @@
 import 'dart:async';
 
-import 'package:boilerplate/di/service_locator.dart';
-import 'package:boilerplate/presentation/my_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:health_care_app/src/presentation/my_app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setPreferredOrientations();
-  await ServiceLocator.configureDependencies();
-  runApp(MyApp());
+  // await ServiceLocator.configureDependencies();
+  runApp(const MyApp());
 }
 
 Future<void> setPreferredOrientations() {
