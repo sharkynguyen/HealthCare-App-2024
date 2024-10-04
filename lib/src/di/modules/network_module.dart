@@ -1,8 +1,13 @@
 import 'package:event_bus/event_bus.dart';
 import 'package:health_care_app/src/core/data/network/dio_client.dart';
+import 'package:health_care_app/src/core/data/network/endpoints/endpoints.dart';
+import 'package:health_care_app/src/core/data/network/https/dio_config.dart';
 import 'package:health_care_app/src/core/data/network/interceptor/auth_interceptor.dart';
 import 'package:health_care_app/src/data/network/interceptor/error_interceptor.dart';
+import 'package:health_care_app/src/data/network/interceptor/login_interceptor.dart';
+import 'package:health_care_app/src/data/share_prefrence/share_prefence_helper.dart';
 import 'package:health_care_app/src/di/di.dart';
+import 'package:health_care_app/src/utils/https/app_rest_client.dart';
 
 class NetworkModule {
   static Future<void> configureNetworkModuleInjection() async {
@@ -10,7 +15,7 @@ class NetworkModule {
     injector.registerSingleton<EventBus>(EventBus());
 
     // interceptors:------------------------------------------------------------
-    // getIt.registerSingleton<LoggingInterceptor>(LoggingInterceptor());
+    // injector.registerSingleton<LoggingInterceptor>(LoggingInterceptor());
     injector.registerSingleton<ErrorInterceptor>(ErrorInterceptor(injector()));
     injector.registerSingleton<AuthInterceptor>(
       AuthInterceptor(
@@ -19,13 +24,9 @@ class NetworkModule {
       ),
     );
 
-    // rest client:-------------------------------------------------------------
-    injector.registerSingleton(RestClient());
-
     // dio:---------------------------------------------------------------------
-    getIt.registerSingleton<DioConfigs>(
+    injector.registerSingleton<DioConfigs>(
       const DioConfigs(
-        baseUrl: Endpoints.baseUrl,
         connectionTimeout: Endpoints.connectionTimeout,
         receiveTimeout: Endpoints.receiveTimeout,
       ),
@@ -34,14 +35,18 @@ class NetworkModule {
       DioClient(dioConfigs: injector())
         ..addInterceptors(
           [
-            getIt<AuthInterceptor>(),
-            getIt<ErrorInterceptor>(),
-            getIt<LoggingInterceptor>(),
+            injector<AuthInterceptor>(),
+            injector<ErrorInterceptor>(),
+            injector<LoggingInterceptor>(),
           ],
         ),
     );
 
+    // rest client:-------------------------------------------------------------
+    injector.registerSingleton(RestClient(injector<DioClient>().dio));
+
     // api's:-------------------------------------------------------------------
-    getIt.registerSingleton(PostApi(getIt<DioClient>(), getIt<RestClient>()));
+    // injector.registerSingleton(
+    //     PostApi(injector<DioClient>(), injector<RestClient>()));
   }
 }
