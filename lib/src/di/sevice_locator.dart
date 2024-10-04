@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
-
-final getIt = GetIt.instance;
+import 'package:health_care_app/src/data/di/data_layer_injection.dart';
 
 class ServiceLocator {
   static Future<void> configureDependencies() async {
