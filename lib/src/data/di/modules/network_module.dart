@@ -15,7 +15,7 @@ class NetworkModule {
     injector.registerSingleton<EventBus>(EventBus());
 
     // interceptors:------------------------------------------------------------
-    // injector.registerSingleton<LoggingInterceptor>(LoggingInterceptor());
+    injector.registerSingleton<LoggingInterceptor>(LoggingInterceptor());
     injector.registerSingleton<ErrorInterceptor>(ErrorInterceptor(injector()));
     injector.registerSingleton<AuthInterceptor>(
       AuthInterceptor(
@@ -31,8 +31,9 @@ class NetworkModule {
         receiveTimeout: Endpoints.receiveTimeout,
       ),
     );
+
     injector.registerSingleton<DioClient>(
-      DioClient(dioConfigs: injector())
+      DioClient(dioConfigs: injector<DioConfigs>())
         ..addInterceptors(
           [
             injector<AuthInterceptor>(),

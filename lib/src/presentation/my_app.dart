@@ -3,7 +3,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:health_care_app/src/constants/strings.dart';
 import 'package:health_care_app/src/l10n/app_localizations.dart';
-import 'package:health_care_app/src/utils/routes/app_route.dart';
 
 class MyApp extends StatelessWidget {
   // final ThemeStore _themeStore = getIt<ThemeStore>();
