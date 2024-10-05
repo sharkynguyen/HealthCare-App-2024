@@ -1,10 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
+import 'package:health_care_app/src/constants/constants.dart';
 import 'package:health_care_app/src/core/responsive/app_responsive.dart';
-import 'package:health_care_app/src/core/theme/assets.gen.dart';
+import 'package:health_care_app/src/core/theme/my_colorscheme.dart';
 import 'package:health_care_app/src/core/widgets/my_scaffold.dart';
-import 'package:health_care_app/src/core/widgets/normal_body.dart';
+import 'package:health_care_app/src/core/widgets/my_text.dart';
+import 'package:health_care_app/src/core/widgets/rounded_button.dart';
+import 'package:health_care_app/src/di/di.dart';
+import 'package:health_care_app/src/presentation/home/widgets/app_bar_home.dart';
+import 'package:health_care_app/src/presentation/home/widgets/data_sensor.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -14,37 +19,43 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyScaffold(
       useAppBar: true,
-      titleWidget: Row(
+      horizontalMargin: Constants.horizontalMargin,
+      titleWidget: const AppBarHome(),
+      body: Column(
         children: [
-          CircleAvatar(
-            radius: context.sizeWidth(25),
-            child: Assets.icons.avatar.image(),
-          ),
-          context.sizedBox(width: 10),
-          const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          _buildTitleDatSensor(context),
+          context.sizedBox(height: 20),
+          const DataSensor(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTitleDatSensor(BuildContext context) {
+    return Row(
+      children: [
+        MyText.labelMedium(
+          context,
+          appLocal(context).data,
+          isBold: true,
+        ),
+        const Spacer(),
+        RoundedButton(
+          buttonColor: colorScheme(context).primary,
+          textColor: colorScheme(context).surface,
+          onPressed: () {},
+          widget: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Xin chao'),
-              NormalBody(str: '0xff923823'),
+              MyText.bodySmall(
+                context,
+                appLocal(context).today,
+              ),
+              const Icon(IconsaxOutline.arrow_2)
             ],
           ),
-          const Spacer(),
-          IconButton(
-            icon: const Icon(IconsaxOutline.menu),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: const Column(
-        children: [
-          Row(
-            children: [
-              Text('Thong so'),
-            ],
-          )
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -13,8 +13,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String get calendar => 'Calendar';
 
   @override
+  String get data => 'Data';
+
+  @override
+  String get heartRate => 'Heart rate';
+
+  @override
+  String get hello => 'Hello';
+
+  @override
   String get home => 'Home';
 
   @override
+  String get oxygen => 'Oxygen';
+
+  @override
   String get setting => 'Setting';
+
+  @override
+  String get today => 'Today';
 }

@@ -40,11 +40,12 @@ class _DashboardBodyState extends State<DashboardBody>
     super.build(context);
     return PageView(
       controller: _pageController,
-      children: [
-        const HomePage(),
-        Text(appLocal(context).home),
-        const Text('Analytics'),
-        const Text('Setting'),
+      physics: const NeverScrollableScrollPhysics(),
+      children: const [
+        HomePage(),
+        Text('Calendar'),
+        Text('Analytics'),
+        Text('Setting'),
       ],
     );
   }
