@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:health_care_app/src/domain/entity/post.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'app_rest_client.g.dart';
@@ -7,6 +8,6 @@ part 'app_rest_client.g.dart';
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
-  @POST('/send-code-register')
-  Future<String> getData(@Body() Map<String, dynamic> body);
+  @POST('/test')
+  Future<List<Post>> getAllSortedByFilter(@Body() Map<String, dynamic> body);
 }
