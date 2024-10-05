@@ -22,6 +22,7 @@ class MyScaffold extends StatelessWidget {
   final bool? resizeToAvoidBottomInset;
   final bool? extendBodyBehindAppBar;
   final Color? appBarColor;
+  final Widget? bottomNavigationBar;
 
   const MyScaffold(
       {super.key,
@@ -42,7 +43,8 @@ class MyScaffold extends StatelessWidget {
       this.sKey,
       this.resizeToAvoidBottomInset,
       this.extendBodyBehindAppBar,
-      this.appBarColor});
+      this.appBarColor,
+      this.bottomNavigationBar});
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,7 @@ class MyScaffold extends StatelessWidget {
       resizeToAvoidBottomInset: resizeToAvoidBottomInset ?? true,
       backgroundColor: backgroundColor,
       endDrawer: endDrawer,
+      bottomNavigationBar: bottomNavigationBar,
       appBar: useAppBar == true || canBack == true
           ? MyAppbar(
               title: appBarTitle,

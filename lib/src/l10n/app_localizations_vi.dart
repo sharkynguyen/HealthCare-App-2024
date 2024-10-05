@@ -7,5 +7,14 @@ class AppLocalizationsVi extends AppLocalizations {
   AppLocalizationsVi([String locale = 'vi']) : super(locale);
 
   @override
-  String get about => 'Về';
+  String get analytics => 'Phân tích';
+
+  @override
+  String get calendar => 'Lịch';
+
+  @override
+  String get home => 'Nhà';
+
+  @override
+  String get setting => 'Cài đặt';
 }

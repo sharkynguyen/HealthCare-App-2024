@@ -5,7 +5,7 @@ ColorScheme colorScheme(context) => Theme.of(context).colorScheme;
 
 class AppColorScheme {
   static final lightTheme = FlexThemeData.light(
-      scheme: FlexScheme.blue,
+      scheme: FlexScheme.red,
       scaffoldBackground: const Color(0xffFFFFFF),
       surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
       blendLevel: 7,
