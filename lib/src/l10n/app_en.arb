@@ -1,6 +1,12 @@
 {
   "analytics": "Analytics",
   "calendar": "Calendar",
+  "chart": "Chart",
+  "data": "Data",
+  "heartRate": "Heart rate",
+  "hello": "Hello",
   "home": "Home",
-  "setting": "Setting"
+  "oxygen": "Oxygen",
+  "setting": "Setting",
+  "today": "Today"
 }

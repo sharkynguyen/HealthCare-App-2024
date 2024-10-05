@@ -25,6 +25,20 @@ mixin _$DashboardStore on _DashboardStore, Store {
     });
   }
 
+  late final _$_DashboardStoreActionController =
+      ActionController(name: '_DashboardStore', context: context);
+
+  @override
+  void changeSelectedIndex(int updatedIndex) {
+    final _$actionInfo = _$_DashboardStoreActionController.startAction(
+        name: '_DashboardStore.changeSelectedIndex');
+    try {
+      return super.changeSelectedIndex(updatedIndex);
+    } finally {
+      _$_DashboardStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

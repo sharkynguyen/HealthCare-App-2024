@@ -1,6 +1,12 @@
 {
   "analytics": "Phân tích",
   "calendar": "Lịch",
+  "chart": "Biểu đồ",
+  "data": "Số liệu",
+  "heartRate": "Nhịp tim",
+  "hello": "Xin chào",
   "home": "Nhà",
-  "setting": "Cài đặt"
+  "oxygen": "Nồng độ Oxy",
+  "setting": "Cài đặt",
+  "today": "Hôm nay"
 }

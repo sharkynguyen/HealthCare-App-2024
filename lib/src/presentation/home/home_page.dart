@@ -1,10 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
+import 'package:health_care_app/src/constants/constants.dart';
 import 'package:health_care_app/src/core/responsive/app_responsive.dart';
-import 'package:health_care_app/src/core/theme/assets.gen.dart';
+import 'package:health_care_app/src/core/theme/my_colorscheme.dart';
 import 'package:health_care_app/src/core/widgets/my_scaffold.dart';
-import 'package:health_care_app/src/core/widgets/normal_body.dart';
+import 'package:health_care_app/src/core/widgets/my_text.dart';
+import 'package:health_care_app/src/core/widgets/rounded_button.dart';
+import 'package:health_care_app/src/di/di.dart';
+import 'package:health_care_app/src/presentation/home/widgets/app_bar_home.dart';
+import 'package:health_care_app/src/presentation/home/widgets/averange_week_chart.dart';
+import 'package:health_care_app/src/presentation/home/widgets/data_sensor.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -13,38 +19,54 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyScaffold(
-      useAppBar: true,
-      titleWidget: Row(
-        children: [
-          CircleAvatar(
-            radius: context.sizeWidth(25),
-            child: Assets.icons.avatar.image(),
-          ),
-          context.sizedBox(width: 10),
-          const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      topPadding: 10,
+      horizontalMargin: Constants.horizontalMargin,
+      titleWidget: const AppBarHome(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const AppBarHome(),
+            context.sizedBox(height: 40),
+            _buildTitleDatSensor(context, appLocal(context).data),
+            context.sizedBox(height: 20),
+            const DataSensor(),
+            context.sizedBox(height: 20),
+            _buildTitleDatSensor(context, appLocal(context).chart),
+            AverangeWeekChart(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTitleDatSensor(BuildContext context, String title) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        MyText.labelMedium(
+          context,
+          title,
+          isBold: true,
+        ),
+        const Spacer(),
+        RoundedButton(
+          buttonColor: colorScheme(context).primary,
+          textColor: colorScheme(context).surface,
+          onPressed: () {},
+          widget: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Xin chao'),
-              NormalBody(str: '0xff923823'),
+              MyText.bodySmall(
+                context,
+                appLocal(context).today,
+              ),
+              context.sizedBox(width: 5),
+              const Icon(IconsaxOutline.arrow_down_1)
             ],
           ),
-          const Spacer(),
-          IconButton(
-            icon: const Icon(IconsaxOutline.menu),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: const Column(
-        children: [
-          Row(
-            children: [
-              Text('Thong so'),
-            ],
-          )
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

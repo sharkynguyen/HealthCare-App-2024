@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:health_care_app/src/constants/strings.dart';
+import 'package:health_care_app/src/constants/constants.dart';
 import 'package:health_care_app/src/di/di.dart';
 import 'package:health_care_app/src/l10n/app_localizations.dart';
 import 'package:health_care_app/src/utils/routes/app_route.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           routerConfig: _appRouter.config(),
-          title: Strings.appName,
+          title: Constants.appName,
           // theme: _themeStore.darkMode
           //     ? AppThemeData.darkThemeData
           //     : AppThemeData.lightThemeData,
