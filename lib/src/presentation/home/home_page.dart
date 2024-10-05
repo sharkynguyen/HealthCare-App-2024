@@ -13,37 +13,38 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyScaffold(
-        useAppBar: true,
-        titleWidget: Row(
-          children: [
-            CircleAvatar(
-              radius: context.sizeWidth(25),
-              child: Assets.icons.avatar.image(),
-            ),
-            context.sizedBox(width: 10),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Xin chao'),
-                NormalBody(str: '0xff923823'),
-              ],
-            ),
-            const Spacer(),
-            IconButton(
-              icon: const Icon(IconsaxOutline.menu),
-              onPressed: () {},
-            ),
-          ],
-        ),
-        body: const Column(
-          children: [
-            Row(
-              children: [
-                Text('Thong so'),
-              ],
-            )
-          ],
-        ));
+      useAppBar: true,
+      titleWidget: Row(
+        children: [
+          CircleAvatar(
+            radius: context.sizeWidth(25),
+            child: Assets.icons.avatar.image(),
+          ),
+          context.sizedBox(width: 10),
+          const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Xin chao'),
+              NormalBody(str: '0xff923823'),
+            ],
+          ),
+          const Spacer(),
+          IconButton(
+            icon: const Icon(IconsaxOutline.menu),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: const Column(
+        children: [
+          Row(
+            children: [
+              Text('Thong so'),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }

@@ -95,11 +95,29 @@ abstract class AppLocalizations {
     Locale('vi')
   ];
 
-  /// No description provided for @about.
+  /// No description provided for @analytics.
   ///
   /// In en, this message translates to:
-  /// **'About'**
-  String get about;
+  /// **'Analytics'**
+  String get analytics;
+
+  /// No description provided for @calendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar'**
+  String get calendar;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Setting'**
+  String get setting;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
