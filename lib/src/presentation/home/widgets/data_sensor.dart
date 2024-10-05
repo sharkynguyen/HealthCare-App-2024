@@ -29,7 +29,7 @@ class DataSensor extends StatelessWidget {
           flex: 1,
           child: ContainerSensorData(
             title: appLocal(context).oxygen,
-            iconData: IconsaxOutline.heart_tick,
+            iconData: IconsaxOutline.notification_circle,
             value: '50',
             unit: Constants.oxygenUnit,
             colorDataSensor: colorScheme(context).primary,

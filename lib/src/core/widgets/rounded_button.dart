@@ -33,8 +33,7 @@ class RoundedButton extends StatelessWidget {
       onPressed: () {},
       style: OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(context.sizeWidth(16)),
-        ),
+            borderRadius: BorderRadius.circular(context.sizeWidth(16))),
       ),
       child: widget ?? Text(buttonText!),
     );

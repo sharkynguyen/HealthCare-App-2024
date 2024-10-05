@@ -28,7 +28,7 @@ class _AppBarHomeState extends State<AppBarHome> {
 
   Widget _buildMenu() {
     return IconButton(
-      icon: const Icon(IconsaxOutline.menu),
+      icon: const Icon(IconsaxOutline.menu_1),
       onPressed: () {},
     );
   }

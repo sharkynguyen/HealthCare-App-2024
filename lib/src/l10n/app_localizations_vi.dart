@@ -13,6 +13,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get calendar => 'Lịch';
 
   @override
+  String get chart => 'Biểu đồ';
+
+  @override
   String get data => 'Số liệu';
 
   @override

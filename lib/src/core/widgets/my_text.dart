@@ -65,7 +65,7 @@ class MyText extends StatelessWidget {
     );
   }
 
-  factory MyText.titleLarge(
+  factory MyText.headlineSmall(
     BuildContext context,
     String str, {
     bool? isBold,
@@ -79,7 +79,7 @@ class MyText extends StatelessWidget {
             color: color,
             weight: isBold == true ? FontWeight.w900 : null,
           )
-          .titleLarge,
+          .headlineSmall,
     );
   }
 }

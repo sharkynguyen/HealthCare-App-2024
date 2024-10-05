@@ -56,7 +56,7 @@ class ContainerSensorData extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            MyText.titleLarge(
+            MyText.headlineSmall(
               context,
               value,
               isBold: true,

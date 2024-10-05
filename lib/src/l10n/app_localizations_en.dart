@@ -13,6 +13,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get calendar => 'Calendar';
 
   @override
+  String get chart => 'Chart';
+
+  @override
   String get data => 'Data';
 
   @override
