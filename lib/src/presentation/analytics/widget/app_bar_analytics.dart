@@ -2,19 +2,23 @@ import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
 import 'package:health_care_app/src/core/widgets/my_rounded_button.dart';
 
-class AppBarCalendar extends StatefulWidget {
-  const AppBarCalendar({super.key});
+class AppBarAnalytics extends StatefulWidget {
+  const AppBarAnalytics({super.key});
 
   @override
-  State<AppBarCalendar> createState() => _AppBarCalendarState();
+  State<AppBarAnalytics> createState() => _AppBarAnalyticsState();
 }
 
-class _AppBarCalendarState extends State<AppBarCalendar> {
+class _AppBarAnalyticsState extends State<AppBarAnalytics> {
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        RoundedButton.textAndDownArrow(context, "October"),
+        RoundedButton.textAndCustomIcon(
+          context,
+          "Good",
+          IconsaxOutline.tick_circle,
+        ),
         const Spacer(),
         _buildMenu(),
       ],
@@ -23,7 +27,7 @@ class _AppBarCalendarState extends State<AppBarCalendar> {
 
   Widget _buildMenu() {
     return IconButton(
-      icon: const Icon(IconsaxOutline.calendar_1),
+      icon: const Icon(IconsaxOutline.check),
       onPressed: () {},
     );
   }
