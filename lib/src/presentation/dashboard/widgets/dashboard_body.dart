@@ -4,6 +4,7 @@ import 'package:health_care_app/src/presentation/analytics/analytics_page.dart';
 import 'package:health_care_app/src/presentation/calendar/calendar_page.dart';
 import 'package:health_care_app/src/presentation/dashboard/store/dashboard_store.dart';
 import 'package:health_care_app/src/presentation/home/home_page.dart';
+import 'package:health_care_app/src/presentation/setting/setting_page.dart';
 import 'package:mobx/mobx.dart';
 
 class DashboardBody extends StatefulWidget {
@@ -47,7 +48,7 @@ class _DashboardBodyState extends State<DashboardBody>
         HomePage(),
         CalendarPage(),
         AnalyticsPage(),
-        Text('Setting'),
+        SettingPage(),
       ],
     );
   }
