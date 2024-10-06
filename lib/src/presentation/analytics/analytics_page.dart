@@ -39,6 +39,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
             context.sizedBox(height: 20),
             _buildTitleAdvices(context, 'Advices'),
             const ListAdvice(),
+            context.sizedBox(height: 30),
           ],
         ),
       ),
