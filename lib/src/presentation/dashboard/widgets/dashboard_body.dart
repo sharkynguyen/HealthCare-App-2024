@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_app/src/di/di.dart';
+import 'package:health_care_app/src/presentation/analytics/analytics_page.dart';
 import 'package:health_care_app/src/presentation/calendar/calendar_page.dart';
 import 'package:health_care_app/src/presentation/dashboard/store/dashboard_store.dart';
 import 'package:health_care_app/src/presentation/home/home_page.dart';
@@ -45,7 +46,7 @@ class _DashboardBodyState extends State<DashboardBody>
       children: const [
         HomePage(),
         CalendarPage(),
-        Text('Analytics'),
+        AnalyticsPage(),
         Text('Setting'),
       ],
     );
