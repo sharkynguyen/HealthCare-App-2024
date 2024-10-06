@@ -6,7 +6,7 @@ import 'package:health_care_app/src/core/responsive/app_responsive.dart';
 import 'package:health_care_app/src/core/theme/my_colorscheme.dart';
 import 'package:health_care_app/src/core/widgets/my_scaffold.dart';
 import 'package:health_care_app/src/core/widgets/my_text.dart';
-import 'package:health_care_app/src/core/widgets/rounded_button.dart';
+import 'package:health_care_app/src/core/widgets/my_rounded_button.dart';
 import 'package:health_care_app/src/di/di.dart';
 import 'package:health_care_app/src/presentation/home/widgets/app_bar_home.dart';
 import 'package:health_care_app/src/presentation/home/widgets/averange_week_chart.dart';
@@ -50,21 +50,9 @@ class HomePage extends StatelessWidget {
           isBold: true,
         ),
         const Spacer(),
-        RoundedButton(
-          buttonColor: colorScheme(context).primary,
-          textColor: colorScheme(context).surface,
-          onPressed: () {},
-          widget: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              MyText.bodySmall(
-                context,
-                appLocal(context).today,
-              ),
-              context.sizedBox(width: 5),
-              const Icon(IconsaxOutline.arrow_down_1)
-            ],
-          ),
+        RoundedButton.textAndDownArrow(
+          context,
+          appLocal(context).today,
         ),
       ],
     );

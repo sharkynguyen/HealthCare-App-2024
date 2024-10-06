@@ -24,9 +24,17 @@ class ContainerSensorData extends StatelessWidget {
     return Container(
       padding: context.padding(horizontal: 24, vertical: 12),
       decoration: BoxDecoration(
-        border: Border.all(color: colorScheme(context).outline, width: 0.8),
-        borderRadius: BorderRadius.circular(context.sizeWidth(16)),
-      ),
+          border: Border.all(color: colorScheme(context).outline, width: 0.8),
+          color: colorScheme(context).surface,
+          borderRadius: BorderRadius.circular(context.sizeWidth(16)),
+          boxShadow: [
+            BoxShadow(
+              color: colorScheme(context).outlineVariant.withOpacity(0.3),
+              spreadRadius: 3,
+              blurRadius: 10,
+              offset: const Offset(0, 3),
+            ),
+          ]),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
