@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_care_app/src/di/di.dart';
+import 'package:health_care_app/src/presentation/calendar/calendar_page.dart';
 import 'package:health_care_app/src/presentation/dashboard/store/dashboard_store.dart';
 import 'package:health_care_app/src/presentation/home/home_page.dart';
 import 'package:mobx/mobx.dart';
@@ -43,7 +44,7 @@ class _DashboardBodyState extends State<DashboardBody>
       physics: const NeverScrollableScrollPhysics(),
       children: const [
         HomePage(),
-        Text('Calendar'),
+        CalendarPage(),
         Text('Analytics'),
         Text('Setting'),
       ],

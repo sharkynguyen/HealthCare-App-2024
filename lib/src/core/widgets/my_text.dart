@@ -14,18 +14,38 @@ class MyText extends StatelessWidget {
     );
   }
 
-  factory MyText.bodySmall(BuildContext context, String str) {
-    return MyText(
-      str: str,
-      style: AppFont().fontTheme(context).bodySmall,
-    );
-  }
-
-  factory MyText.bodyLarge(BuildContext context, String str, {bool? isBold}) {
+  factory MyText.bodySmall(
+    BuildContext context,
+    String str, {
+    bool? isBold,
+    Color? color,
+  }) {
     return MyText(
       str: str,
       style: AppFont()
-          .fontTheme(context, weight: isBold == true ? FontWeight.bold : null)
+          .fontTheme(
+            context,
+            color: color,
+            weight: isBold == true ? FontWeight.w900 : null,
+          )
+          .bodySmall,
+    );
+  }
+
+  factory MyText.bodyLarge(
+    BuildContext context,
+    String str, {
+    bool? isBold,
+    Color? color,
+  }) {
+    return MyText(
+      str: str,
+      style: AppFont()
+          .fontTheme(
+            context,
+            color: color,
+            weight: isBold == true ? FontWeight.w900 : null,
+          )
           .bodyLarge,
     );
   }

@@ -1,5 +1,8 @@
+import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
 import 'package:health_care_app/src/core/responsive/app_responsive.dart';
+import 'package:health_care_app/src/core/theme/my_colorscheme.dart';
+import 'package:health_care_app/src/core/widgets/my_text.dart';
 
 class RoundedButton extends StatelessWidget {
   final String? buttonText;
@@ -36,6 +39,22 @@ class RoundedButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(context.sizeWidth(16))),
       ),
       child: widget ?? Text(buttonText!),
+    );
+  }
+
+  factory RoundedButton.textAndDownArrow(BuildContext context, String str) {
+    return RoundedButton(
+      buttonColor: colorScheme(context).primary,
+      textColor: colorScheme(context).surface,
+      onPressed: () {},
+      widget: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          MyText.bodySmall(context, str),
+          context.sizedBox(width: 5),
+          const Icon(IconsaxOutline.arrow_down_1)
+        ],
+      ),
     );
   }
 }

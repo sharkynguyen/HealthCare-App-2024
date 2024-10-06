@@ -61,6 +61,7 @@ dependencies:
   # V
   validators: ^3.0.0
   # W
+  weekly_date_picker: ^1.4.2
   # X
   xxtea: ^2.1.0
   flutter_localizations:
