@@ -13,6 +13,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(path: '/dashboard', initial: true, page: DashboardRoute.page),
         AutoRoute(path: '/home', page: HomeRoute.page),
         AutoRoute(path: '/calendar', page: CalendarRoute.page),
+        AutoRoute(path: '/analytics', page: AnalyticsRoute.page),
         AutoRoute(path: '/login', page: LoginRoute.page),
       ];
 }
