@@ -8,6 +8,7 @@ import 'package:health_care_app/src/domain/usecase/user/is_logged_in_usecase.dar
 import 'package:health_care_app/src/domain/usecase/user/login_usecase.dart';
 import 'package:health_care_app/src/domain/usecase/user/save_login_status_usecase.dart';
 import 'package:health_care_app/src/presentation/dashboard/store/dashboard_store.dart';
+import 'package:health_care_app/src/presentation/home/store/home_store.dart';
 import 'package:health_care_app/src/presentation/home/store/language_store.dart';
 import 'package:health_care_app/src/presentation/home/store/theme_store.dart';
 import 'package:health_care_app/src/presentation/login/store/login_store.dart';
@@ -50,6 +51,8 @@ class StoreModule {
     );
 
     injector.registerSingleton<DashboardStore>(DashboardStore());
+
+    injector.registerSingleton<HomeStore>(HomeStore());
 
     injector.registerSingleton<LanguageStore>(
       LanguageStore(

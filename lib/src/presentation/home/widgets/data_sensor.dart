@@ -4,10 +4,25 @@ import 'package:health_care_app/src/constants/constants.dart';
 import 'package:health_care_app/src/core/responsive/app_responsive.dart';
 import 'package:health_care_app/src/core/theme/my_colorscheme.dart';
 import 'package:health_care_app/src/di/di.dart';
+import 'package:health_care_app/src/presentation/home/store/home_store.dart';
 import 'package:health_care_app/src/presentation/home/widgets/container_sensor_data.dart';
 
-class DataSensor extends StatelessWidget {
+class DataSensor extends StatefulWidget {
   const DataSensor({super.key});
+
+  @override
+  State<DataSensor> createState() => _DataSensorState();
+}
+
+class _DataSensorState extends State<DataSensor> {
+  final HomeStore _homeStore = injector<HomeStore>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _homeStore.configMqqtClient();
+  }
 
   @override
   Widget build(BuildContext context) {

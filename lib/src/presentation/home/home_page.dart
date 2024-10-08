@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
 import 'package:health_care_app/src/constants/constants.dart';
 import 'package:health_care_app/src/core/responsive/app_responsive.dart';
-import 'package:health_care_app/src/core/theme/my_colorscheme.dart';
 import 'package:health_care_app/src/core/widgets/my_scaffold.dart';
 import 'package:health_care_app/src/core/widgets/my_text.dart';
 import 'package:health_care_app/src/core/widgets/my_rounded_button.dart';
