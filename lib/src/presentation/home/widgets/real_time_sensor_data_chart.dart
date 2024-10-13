@@ -1,9 +1,9 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:health_care_app/src/presentation/home/widgets/averange_week_chart.dart';
+import 'package:health_care_app/src/presentation/analytics/widget/averange_week_chart.dart';
 
-class AnalyticsLineChart extends StatelessWidget {
-  const AnalyticsLineChart({super.key, required this.isShowingMainData});
+class RealTimeSensorDataChart extends StatelessWidget {
+  const RealTimeSensorDataChart({super.key, required this.isShowingMainData});
 
   final bool isShowingMainData;
 
@@ -135,13 +135,13 @@ class AnalyticsLineChart extends StatelessWidget {
     Widget text;
     switch (value.toInt()) {
       case 2:
-        text = const Text('SEPT', style: style);
+        text = const Text('Th2', style: style);
         break;
       case 7:
-        text = const Text('OCT', style: style);
+        text = const Text('Th3', style: style);
         break;
       case 12:
-        text = const Text('DEC', style: style);
+        text = const Text('Th4', style: style);
         break;
       default:
         text = const Text('');
@@ -330,8 +330,8 @@ class LineChartSample1State extends State<LineChartSample1> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(right: 16, left: 6),
-                  child:
-                      AnalyticsLineChart(isShowingMainData: isShowingMainData),
+                  child: RealTimeSensorDataChart(
+                      isShowingMainData: isShowingMainData),
                 ),
               ),
               const SizedBox(

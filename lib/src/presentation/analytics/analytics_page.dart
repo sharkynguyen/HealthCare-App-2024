@@ -5,8 +5,8 @@ import 'package:health_care_app/src/core/responsive/app_responsive.dart';
 import 'package:health_care_app/src/core/widgets/my_rounded_button.dart';
 import 'package:health_care_app/src/core/widgets/my_scaffold.dart';
 import 'package:health_care_app/src/core/widgets/my_text.dart';
-import 'package:health_care_app/src/presentation/analytics/widget/anaylitics_line_chart.dart';
 import 'package:health_care_app/src/presentation/analytics/widget/app_bar_analytics.dart';
+import 'package:health_care_app/src/presentation/analytics/widget/averange_week_chart.dart';
 import 'package:health_care_app/src/presentation/analytics/widget/list_advice.dart';
 import 'package:health_care_app/src/presentation/calendar/widget/app_bar_calendar.dart';
 
@@ -29,14 +29,9 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
         child: Column(
           children: [
             const AppBarAnalytics(),
-            context.sizedBox(height: 40),
-            const SizedBox(
-              height: 200,
-              child: AnalyticsLineChart(
-                isShowingMainData: true,
-              ),
-            ),
             context.sizedBox(height: 20),
+            AverangeWeekChart(),
+            context.sizedBox(height: 10),
             _buildTitleAdvices(context, 'Advices'),
             const ListAdvice(),
             context.sizedBox(height: 30),
