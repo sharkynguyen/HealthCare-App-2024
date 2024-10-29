@@ -21,7 +21,7 @@ class _DataSensorState extends State<DataSensor> {
   void initState() {
     super.initState();
 
-    _homeStore.configMqqtClient();
+    _homeStore.scanAndConnect();
   }
 
   @override
@@ -34,7 +34,7 @@ class _DataSensorState extends State<DataSensor> {
           child: ContainerSensorData(
             title: appLocal(context).heartRate,
             iconData: IconsaxOutline.heart_tick,
-            value: '120',
+            value: '80.68',
             unit: Constants.heartRateUnit,
             colorDataSensor: colorScheme(context).error,
           ),
@@ -45,7 +45,7 @@ class _DataSensorState extends State<DataSensor> {
           child: ContainerSensorData(
             title: appLocal(context).oxygen,
             iconData: IconsaxOutline.notification_circle,
-            value: '50',
+            value: '95',
             unit: Constants.oxygenUnit,
             colorDataSensor: colorScheme(context).primary,
           ),

@@ -1,7 +1,6 @@
-import 'dart:io';
+import 'dart:convert';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:logger/logger.dart';
-import 'package:mqtt_client/mqtt_client.dart';
-import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_store.g.dart';
@@ -9,97 +8,89 @@ part 'home_store.g.dart';
 class HomeStore = _HomeStore with _$HomeStore;
 
 abstract class _HomeStore with Store {
-  static const String server = 'mqtt3.thingspeak.com';
-  static const String clientID = 'JTIkHDM5OA8GIT0pMzABMRY';
+  @observable
+  double heartRate = 0.0;
 
-  final client = MqttServerClient(server, clientID);
-
-  var pongCount = 0;
-  var pingCount = 0;
+  @observable
+  double humidity = 0.0;
 
   @action
-  Future<void> configMqqtClient() async {
-    client.port = 8883;
+  void updateHeartRate(double value) {
+    heartRate = value;
+  }
 
-    // Configure client settings
-    client.secure = true;
-    client.logging(on: true);
-    client.keepAlivePeriod = 60;
-    client.setProtocolV311();
+  @action
+  void updateHumidity(double value) {
+    humidity = value;
+  }
 
-    client.connectTimeoutPeriod = 2000;
-    client.onDisconnected = onDisconnected;
-    client.onConnected = onConnected;
-    client.onSubscribed = onSubscribed;
-    client.pongCallback = pong;
-    client.pingCallback = ping;
+  @action
+  Future<void> scanAndConnect() async {
+    Logger().d("Scanning for ESP32_HeartSensor...");
 
-    final connMess = MqttConnectMessage()
-        .withClientIdentifier(clientID)
-        .withWillTopic('willtopic')
-        .withWillMessage('My Will message')
-        .startClean()
-        .withWillQos(MqttQos.atLeastOnce);
+    // Bắt đầu quét thiết bị trong 10 giây
+    FlutterBluePlus.startScan(timeout: const Duration(seconds: 5));
 
-    Logger().d('Connecting to MQTT broker....');
+    FlutterBluePlus.scanResults.listen((results) async {
+      for (var r in results) {
+        Logger().d('Found device: ${r.device.platformName} (${r.device.id})');
+        if (r.device.platformName == 'ESP32_HeartSensor') {
+          Logger().d('Found ESP32_HeartSensor, connecting...');
+          FlutterBluePlus.stopScan();
+          await connectToDevice(r.device);
+          break;
+        }
+      }
+    });
+  }
 
-    client.connectionMessage = connMess;
+  @action
+  Future<void> connectToDevice(BluetoothDevice device) async {
+    Logger().d('Connecting to ${device.platformName}...');
+    await device.connect();
+    Logger().d('Connected to ${device.platformName}');
+
+    // Bắt đầu lắng nghe dữ liệu từ thiết bị
+    await listenToDevice(device);
+  }
+
+  @action
+  Future<void> listenToDevice(BluetoothDevice device) async {
+    Logger().d("Listening to ${device.platformName}...");
+
+    List<BluetoothService> services = await device.discoverServices();
+    for (var service in services) {
+      for (var characteristic in service.characteristics) {
+        if (characteristic.properties.notify) {
+          await characteristic.setNotifyValue(true);
+          characteristic.value.listen((value) {
+            _handleData(value);
+          });
+        }
+      }
+    }
+  }
+
+  void _handleData(List<int> value) {
+    String data = utf8.decode(value);
+    Logger().d("Received: $data");
 
     try {
-      await client.connect(
-          'JTIkHDM5OA8GIT0pMzABMRY', 'V2Sz8BNkVQU38V2gqcKeG7w2');
+      RegExp regExp = RegExp(r"HR:\s*([\d.]+)\s*bpm,\s*SpO2:\s*([\d.]+)\s*%");
+      var match = regExp.firstMatch(data);
 
-      Logger().d('Connected successfully to MQTT broker');
-    } on NoConnectionException catch (e) {
-      Logger().d('Client exception - $e');
-      client.disconnect();
-      return;
-    } on SocketException catch (e) {
-      Logger().d('Socket exception - $e');
-      client.disconnect();
-      return;
+      if (match != null) {
+        double heartRate = double.parse(match.group(1)!);
+        double spo2 = double.parse(match.group(2)!);
+
+        Logger().d("Parsed -> Heart Rate: $heartRate bpm, SpO2: $spo2%");
+        updateHeartRate(heartRate);
+        updateHumidity(spo2);
+      } else {
+        Logger().d("Invalid data format: $data");
+      }
+    } catch (e) {
+      Logger().d("Error parsing data: $e");
     }
-
-    if (client.connectionStatus!.state == MqttConnectionState.connected) {
-      Logger().d('Client connected');
-
-      // Subscribe to the topic
-      const topic = 'beat/spo2';
-      client.subscribe(topic, MqttQos.atLeastOnce);
-
-      // Listen for updates
-      client.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
-        final recMess = c![0].payload as MqttPublishMessage;
-        final pt =
-            MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
-        Logger().d('Notification:: topic <${c[0].topic}>, payload <-- $pt -->');
-      });
-    }
-  }
-
-  /// The subscribed callback
-  void onSubscribed(String topic) {
-    Logger().d('Subscription confirmed for topic $topic');
-  }
-
-  void onDisconnected() {
-    Logger().d('OnDisconnected client callback - Client disconnection');
-  }
-
-  void onConnected() {
-    Logger()
-        .d('OnConnected client callback - Client connection was successful');
-  }
-
-  /// Pong callback
-  void pong() {
-    Logger().d('Ping response client callback invoked');
-    pongCount++;
-  }
-
-  /// Ping callback
-  void ping() {
-    Logger().d('Ping sent client callback invoked');
-    pingCount++;
   }
 }
