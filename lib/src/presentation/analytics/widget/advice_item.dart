@@ -4,12 +4,14 @@ import 'package:health_care_app/src/core/theme/my_colorscheme.dart';
 import 'package:health_care_app/src/core/widgets/my_text.dart';
 
 class AdviceItem extends StatelessWidget {
-  const AdviceItem({super.key});
+  final String advice;
+  final String updatedAt;
+  const AdviceItem({super.key, required this.advice, required this.updatedAt});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: context.padding(vertical: 12),
+      padding: context.padding(vertical: 6),
       child: Container(
         padding: context.padding(horizontal: 24, vertical: 12),
         alignment: Alignment.centerLeft,
@@ -22,11 +24,10 @@ class AdviceItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            MyText.bodySmall(context, '80:45 PM 12/03/2024'),
+            MyText.bodySmall(context, updatedAt),
             Padding(
               padding: context.padding(vertical: 5),
-              child: MyText.bodyLarge(
-                  context, 'Nhịp tim và nồng độ Oxy đang ổn định'),
+              child: MyText.bodyLarge(context, advice),
             ),
           ],
         ),

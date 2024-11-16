@@ -35,18 +35,18 @@ class _CalendarPageState extends State<CalendarPage> {
     );
   }
 
-  Widget _buildWeekPicker() {
-    return WeeklyDatePicker(
-      selectedDay: _selectedDay,
-      changeDay: (value) => setState(() {
-        _selectedDay = value;
-      }),
-      enableWeeknumberText: false,
-      weeknumberColor: colorScheme(context).primary,
-      weeknumberTextColor: colorScheme(context).outline,
-      weekdayTextColor: colorScheme(context).outline,
-      digitsColor: colorScheme(context).onPrimaryContainer,
-      selectedDigitBackgroundColor: colorScheme(context).primary,
-    );
-  }
+  // Widget _buildWeekPicker() {
+  //   return WeeklyDatePicker(
+  //     selectedDay: _selectedDay,
+  //     changeDay: (value) => setState(() {
+  //       _selectedDay = value;
+  //     }),
+  //     enableWeeknumberText: false,
+  //     weeknumberColor: colorScheme(context).primary,
+  //     weeknumberTextColor: colorScheme(context).outline,
+  //     weekdayTextColor: colorScheme(context).outline,
+  //     digitsColor: colorScheme(context).onPrimaryContainer,
+  //     selectedDigitBackgroundColor: colorScheme(context).primary,
+  //   );
+  // }
 }

@@ -18,7 +18,7 @@ class _ListTimelineTrackingState extends State<ListTimelineTracking> {
   Widget build(BuildContext context) {
     return Observer(
       builder: (context) => ListView.builder(
-          itemCount: 10,
+          itemCount: _calendarStore.sensorData.length,
           padding: EdgeInsets.zero,
           shrinkWrap: true,
           itemBuilder: (context, index) {

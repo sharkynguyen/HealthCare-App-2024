@@ -28,15 +28,15 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const AppBarAnalytics(),
-            context.sizedBox(height: 40),
-            const SizedBox(
-              height: 200,
-              child: AnalyticsLineChart(
-                isShowingMainData: true,
-              ),
-            ),
-            context.sizedBox(height: 20),
+            // const AppBarAnalytics(),
+            // context.sizedBox(height: 40),
+            // const SizedBox(
+            //   height: 200,
+            //   child: AnalyticsLineChart(
+            //     isShowingMainData: true,
+            //   ),
+            // ),
+            // context.sizedBox(height: 20),
             _buildTitleAdvices(context, 'Advices'),
             const ListAdvice(),
             context.sizedBox(height: 30),
