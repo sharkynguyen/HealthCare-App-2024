@@ -14,7 +14,7 @@ class _RestClient implements RestClient {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://wwww.google.com/';
+    baseUrl ??= 'https://smarthomecmn.vercel.app/feed/';
   }
 
   final Dio _dio;
@@ -24,20 +24,19 @@ class _RestClient implements RestClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<Post>> getAllSortedByFilter(Map<String, dynamic> body) async {
+  Future<List<CalendarSensor>> getSensorData() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(body);
-    final _options = _setStreamType<List<Post>>(Options(
-      method: 'POST',
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<CalendarSensor>>(Options(
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/test',
+          '/heart_oxygen',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -47,10 +46,11 @@ class _RestClient implements RestClient {
           baseUrl,
         )));
     final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<Post> _value;
+    late List<CalendarSensor> _value;
     try {
       _value = _result.data!
-          .map((dynamic i) => Post.fromJson(i as Map<String, dynamic>))
+          .map(
+              (dynamic i) => CalendarSensor.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
