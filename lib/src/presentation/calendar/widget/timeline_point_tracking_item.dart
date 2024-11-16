@@ -5,10 +5,15 @@ import 'package:health_care_app/src/core/theme/my_colorscheme.dart';
 import 'package:health_care_app/src/core/widgets/my_text.dart';
 
 class TimelinePointTrackingItem extends StatelessWidget {
-  final Color statusColor;
   final String time;
-  const TimelinePointTrackingItem(
-      {super.key, required this.statusColor, required this.time});
+  final String heartRate;
+  final String oxygen;
+  const TimelinePointTrackingItem({
+    super.key,
+    required this.time,
+    required this.heartRate,
+    required this.oxygen,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +36,8 @@ class TimelinePointTrackingItem extends StatelessWidget {
               alignment: Alignment.center,
               padding: context.padding(horizontal: 24, vertical: 12),
               decoration: BoxDecoration(
-                border: Border.all(color: statusColor, width: 0.8),
+                border:
+                    Border.all(color: colorScheme(context).primary, width: 0.8),
                 borderRadius: BorderRadius.circular(context.sizeWidth(16)),
               ),
               child: Row(
@@ -41,8 +47,8 @@ class TimelinePointTrackingItem extends StatelessWidget {
                   context.sizedBox(width: 10),
                   MyText.bodyLarge(
                     context,
-                    '120 Bpm',
-                    color: Color(0xff55C306),
+                    '$heartRate Bpm',
+                    color: const Color(0xff55C306),
                     isBold: true,
                   ),
                   context.sizedBox(width: 20),
@@ -50,7 +56,7 @@ class TimelinePointTrackingItem extends StatelessWidget {
                   context.sizedBox(width: 10),
                   MyText.bodyLarge(
                     context,
-                    '70 %',
+                    '$oxygen %',
                     color: colorScheme(context).primary,
                   ),
                 ],

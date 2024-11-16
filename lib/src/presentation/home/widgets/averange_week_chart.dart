@@ -4,14 +4,14 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:health_care_app/src/di/di.dart';
 import 'package:health_care_app/src/presentation/home/store/home_store.dart';
 
-class RealTimeChart extends StatefulWidget {
-  const RealTimeChart({super.key});
+class AverageWeekChart extends StatefulWidget {
+  const AverageWeekChart({super.key});
 
   @override
-  State<RealTimeChart> createState() => _RealTimeChartState();
+  State<AverageWeekChart> createState() => _AverageWeekChartState();
 }
 
-class _RealTimeChartState extends State<RealTimeChart> {
+class _AverageWeekChartState extends State<AverageWeekChart> {
   final HomeStore _homeStore = injector.get<HomeStore>();
   final List<FlSpot> _heartRateData = [];
   final List<FlSpot> _oxygenData = [];

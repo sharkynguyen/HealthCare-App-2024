@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
             context.sizedBox(height: 20),
             _buildTitleDatSensor(context, appLocal(context).chart),
             context.sizedBox(height: 10),
-            const RealTimeChart(),
+            const AverageWeekChart(),
           ],
         ),
       ),

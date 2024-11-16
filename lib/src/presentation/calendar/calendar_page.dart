@@ -29,8 +29,6 @@ class _CalendarPageState extends State<CalendarPage> {
         children: [
           const AppBarCalendar(),
           context.sizedBox(height: 40),
-          _buildWeekPicker(),
-          context.sizedBox(height: 10),
           const Expanded(child: ListTimelineTracking()),
         ],
       ),

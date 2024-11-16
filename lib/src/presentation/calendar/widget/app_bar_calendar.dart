@@ -14,7 +14,7 @@ class _AppBarCalendarState extends State<AppBarCalendar> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        RoundedButton.textAndDownArrow(context, "October"),
+        RoundedButton.textAndDownArrow(context, "Today"),
         const Spacer(),
         _buildMenu(),
       ],
