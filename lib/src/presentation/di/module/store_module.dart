@@ -4,11 +4,13 @@ import 'package:health_care_app/src/core/stores/error_store.dart';
 import 'package:health_care_app/src/core/stores/form_store.dart';
 import 'package:health_care_app/src/di/di.dart';
 import 'package:health_care_app/src/domain/repository/adafruit_repository.dart';
+import 'package:health_care_app/src/domain/repository/analytics_repository.dart';
 import 'package:health_care_app/src/domain/repository/calendar_repository.dart';
 import 'package:health_care_app/src/domain/repository/setting_repository.dart';
 import 'package:health_care_app/src/domain/usecase/user/is_logged_in_usecase.dart';
 import 'package:health_care_app/src/domain/usecase/user/login_usecase.dart';
 import 'package:health_care_app/src/domain/usecase/user/save_login_status_usecase.dart';
+import 'package:health_care_app/src/presentation/analytics/store/analytics_store.dart';
 import 'package:health_care_app/src/presentation/calendar/store/calendar_store.dart';
 import 'package:health_care_app/src/presentation/dashboard/store/dashboard_store.dart';
 import 'package:health_care_app/src/presentation/home/store/home_store.dart';
@@ -53,6 +55,9 @@ class StoreModule {
 
     injector.registerSingleton<CalendarStore>(
         CalendarStore(injector<CalendarRepository>()));
+
+    injector.registerSingleton<AnalyticsStore>(
+        AnalyticsStore(injector<AnalyticsRepository>()));
 
     injector.registerSingleton<LanguageStore>(
       LanguageStore(

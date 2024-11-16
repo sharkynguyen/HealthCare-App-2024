@@ -42,15 +42,15 @@ class _DashboardPageState extends State<DashboardPage> {
                 IconsaxBold.home,
                 appLocal(context).home,
               ),
-              Tuple3(
+              const Tuple3(
                 IconsaxOutline.calendar,
                 IconsaxBold.calendar,
-                appLocal(context).calendar,
+                'Timelines',
               ),
-              Tuple3(
+              const Tuple3(
                 IconsaxOutline.chart,
                 IconsaxBold.chart_2,
-                appLocal(context).analytics,
+                'Advices',
               ),
               Tuple3(
                 IconsaxOutline.setting,
