@@ -10,8 +10,8 @@ import 'package:mqtt_client/mqtt_server_client.dart';
 class AdafruitRepositoryImpl extends AdafruitRepository {
   late MqttServerClient _client;
 
-  final String userName = 'sharkynguyen';
-  final String apiKey = 'aio_QSHH52yLQ9ZXNlQCdui5l1rt8t5g';
+  final String userName = '_';
+  final String apiKey = '_';
 
   StreamSubscription<List<MqttReceivedMessage<MqttMessage>>>?
       _listenSensorSubscription;
