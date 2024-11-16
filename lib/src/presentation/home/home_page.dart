@@ -4,7 +4,6 @@ import 'package:health_care_app/src/constants/constants.dart';
 import 'package:health_care_app/src/core/responsive/app_responsive.dart';
 import 'package:health_care_app/src/core/widgets/my_scaffold.dart';
 import 'package:health_care_app/src/core/widgets/my_text.dart';
-import 'package:health_care_app/src/core/widgets/my_rounded_button.dart';
 import 'package:health_care_app/src/di/di.dart';
 import 'package:health_care_app/src/presentation/home/widgets/app_bar_home.dart';
 import 'package:health_care_app/src/presentation/home/widgets/averange_week_chart.dart';
@@ -30,7 +29,8 @@ class HomePage extends StatelessWidget {
             const DataSensor(),
             context.sizedBox(height: 20),
             _buildTitleDatSensor(context, appLocal(context).chart),
-            AverangeWeekChart(),
+            context.sizedBox(height: 10),
+            const RealTimeChart(),
           ],
         ),
       ),
@@ -40,17 +40,12 @@ class HomePage extends StatelessWidget {
   Widget _buildTitleDatSensor(BuildContext context, String title) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         MyText.labelMedium(
           context,
           title,
           isBold: true,
-        ),
-        const Spacer(),
-        RoundedButton.textAndDownArrow(
-          context,
-          appLocal(context).today,
         ),
       ],
     );
