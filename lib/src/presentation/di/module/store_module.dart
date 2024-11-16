@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:health_care_app/src/core/stores/error_store.dart';
 import 'package:health_care_app/src/core/stores/form_store.dart';
 import 'package:health_care_app/src/di/di.dart';
+import 'package:health_care_app/src/domain/repository/adafruit_repository.dart';
 import 'package:health_care_app/src/domain/repository/setting_repository.dart';
 import 'package:health_care_app/src/domain/usecase/user/is_logged_in_usecase.dart';
 import 'package:health_care_app/src/domain/usecase/user/login_usecase.dart';
 import 'package:health_care_app/src/domain/usecase/user/save_login_status_usecase.dart';
 import 'package:health_care_app/src/presentation/dashboard/store/dashboard_store.dart';
+import 'package:health_care_app/src/presentation/home/store/home_store.dart';
 import 'package:health_care_app/src/presentation/home/store/language_store.dart';
 import 'package:health_care_app/src/presentation/home/store/theme_store.dart';
 import 'package:health_care_app/src/presentation/login/store/login_store.dart';
@@ -35,13 +37,6 @@ class StoreModule {
 
     injector.registerSingleton<AppRouter>(AppRouter());
 
-    // injector.registerSingleton<PostStore>(
-    //   PostStore(
-    //     injector<GetPostUseCase>(),
-    //     injector<ErrorStore>(),
-    //   ),
-    // );
-
     injector.registerSingleton<ThemeStore>(
       ThemeStore(
         injector<SettingRepository>(),
@@ -50,6 +45,9 @@ class StoreModule {
     );
 
     injector.registerSingleton<DashboardStore>(DashboardStore());
+
+    injector.registerSingleton<HomeStore>(
+        HomeStore(injector<AdafruitRepository>()));
 
     injector.registerSingleton<LanguageStore>(
       LanguageStore(

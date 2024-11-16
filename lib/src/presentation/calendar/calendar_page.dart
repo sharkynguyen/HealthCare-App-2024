@@ -6,7 +6,6 @@ import 'package:health_care_app/src/core/theme/my_colorscheme.dart';
 import 'package:health_care_app/src/core/widgets/my_scaffold.dart';
 import 'package:health_care_app/src/presentation/calendar/widget/app_bar_calendar.dart';
 import 'package:health_care_app/src/presentation/calendar/widget/list_timeline_tracking.dart';
-import 'package:health_care_app/src/presentation/calendar/widget/timeline_point_tracking_item.dart';
 import 'package:weekly_date_picker/weekly_date_picker.dart';
 
 @RoutePage()
