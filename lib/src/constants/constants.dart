@@ -9,4 +9,8 @@ class Constants {
   static const String heartRateUnit = 'Bpm';
 
   static const String oxygenUnit = '%';
+
+  static const String adafruitUserName = 'ADAFRUIT_AIO_USERNAME';
+
+  static const String adafruitKey = 'ADAFRUIT_AIO_KEY';
 }

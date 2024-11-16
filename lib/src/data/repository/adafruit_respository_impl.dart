@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:health_care_app/src/constants/constants.dart';
 import 'package:health_care_app/src/domain/entity/stream_sensor.dart';
 import 'package:health_care_app/src/domain/repository/adafruit_repository.dart';
 import 'package:logger/logger.dart';
@@ -10,8 +12,8 @@ import 'package:mqtt_client/mqtt_server_client.dart';
 class AdafruitRepositoryImpl extends AdafruitRepository {
   late MqttServerClient _client;
 
-  final String userName = '_';
-  final String apiKey = '_';
+  final String userName = dotenv.get(Constants.adafruitUserName);
+  final String apiKey = dotenv.get(Constants.adafruitKey);
 
   StreamSubscription<List<MqttReceivedMessage<MqttMessage>>>?
       _listenSensorSubscription;
