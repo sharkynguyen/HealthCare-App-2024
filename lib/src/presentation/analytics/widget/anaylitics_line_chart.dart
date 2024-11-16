@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:health_care_app/src/presentation/analytics/widget/app_colors.dart';
 import 'package:health_care_app/src/presentation/home/widgets/averange_week_chart.dart';
 
 class AnalyticsLineChart extends StatelessWidget {

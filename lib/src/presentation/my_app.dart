@@ -23,14 +23,6 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           routerConfig: _appRouter.config(),
           title: Constants.appName,
-          // theme: _themeStore.darkMode
-          //     ? AppThemeData.darkThemeData
-          //     : AppThemeData.lightThemeData,
-          // routes: Routes.routes,
-          // locale: Locale(_languageStore.locale),
-          // supportedLocales: _languageStore.supportedLanguages
-          //     .map((language) => Locale(language.locale, language.code))
-          //     .toList(),
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
