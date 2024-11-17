@@ -1,13 +1,16 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:health_care_app/src/constants/constants.dart';
 import 'package:health_care_app/src/core/responsive/app_responsive.dart';
+import 'package:health_care_app/src/core/widgets/my_rounded_button.dart';
 import 'package:health_care_app/src/core/widgets/my_scaffold.dart';
-import 'package:health_care_app/src/core/widgets/my_text.dart';
+import 'package:health_care_app/src/core/widgets/my_text_form_field.dart';
+import 'package:health_care_app/src/di/di.dart';
+import 'package:health_care_app/src/domain/entity/personal_info.dart';
 import 'package:health_care_app/src/presentation/calendar/widget/app_bar_calendar.dart';
+import 'package:health_care_app/src/presentation/setting/store/setting_store.dart';
 import 'package:health_care_app/src/presentation/setting/widget/app_bar_setting.dart';
-import 'package:health_care_app/src/presentation/setting/widget/setting_button_item.dart';
 
 @RoutePage()
 class SettingPage extends StatefulWidget {
@@ -18,6 +21,26 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  late TextEditingController _ageController;
+  late TextEditingController _genderController;
+  late TextEditingController _heartDeseaseController;
+  late TextEditingController _otherDeseaseController;
+
+  final _settingStore = injector.get<SettingStore>();
+
+  @override
+  void initState() {
+    _ageController =
+        TextEditingController(text: _settingStore.personalInfo.first.age);
+    _genderController =
+        TextEditingController(text: _settingStore.personalInfo.first.gender);
+    _heartDeseaseController = TextEditingController(
+        text: _settingStore.personalInfo.first.heartDesease);
+    _otherDeseaseController = TextEditingController(
+        text: _settingStore.personalInfo.first.otherDease);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MyScaffold(
@@ -25,55 +48,55 @@ class _SettingPageState extends State<SettingPage> {
       horizontalMargin: Constants.horizontalMargin,
       titleWidget: const AppBarCalendar(),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const AppBarSetting(),
-            context.sizedBox(height: 40),
-            _buildTitleSetting(context, 'Chung'),
-            context.sizedBox(height: 10),
-            const SettingButtonItem(
-              title: 'Thông tin cá nhân',
-              iconData: IconsaxOutline.profile_circle,
-            ),
-            const SettingButtonItem(
-              title: 'Thông tin thiết bị',
-              iconData: IconsaxOutline.device_message,
-            ),
-            context.sizedBox(height: 20),
-            _buildTitleSetting(context, 'Chung'),
-            context.sizedBox(height: 10),
-            const SettingButtonItem(
-              title: 'Giao diện sáng/tối',
-              iconData: IconsaxOutline.sun_1,
-            ),
-            const SettingButtonItem(
-              title: 'Ngôn ngữ',
-              iconData: IconsaxOutline.language_circle,
-            ),
-            context.sizedBox(height: 20),
-            _buildTitleSetting(context, 'Chính sách'),
-            context.sizedBox(height: 10),
-            const SettingButtonItem(
-              title: 'Quyền riêng tư',
-              iconData: IconsaxOutline.shield,
-            ),
-            const SettingButtonItem(
-              title: 'Liên hệ báo cáo',
-              iconData: IconsaxOutline.call,
-            ),
-            context.sizedBox(height: 30),
-          ],
+        child: Observer(
+          builder: (context) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const AppBarSetting(),
+              context.sizedBox(height: 40),
+              MyTextField(
+                icon: Icons.person,
+                errorText: null,
+                textController: _ageController,
+              ),
+              context.sizedBox(height: 10),
+              MyTextField(
+                icon: Icons.man,
+                errorText: null,
+                textController: _genderController,
+              ),
+              context.sizedBox(height: 10),
+              MyTextField(
+                icon: Icons.heart_broken,
+                errorText: null,
+                textController: _heartDeseaseController,
+              ),
+              context.sizedBox(height: 10),
+              MyTextField(
+                icon: Icons.description,
+                errorText: null,
+                textController: _otherDeseaseController,
+              ),
+              context.sizedBox(height: 20),
+              Center(
+                child: RoundedButton.textAndCustomIcon(
+                    context,
+                    'Update',
+                    Icons.update,
+                    () => _settingStore.updatePersonInfo(PersonalInfo(
+                          age: _ageController.text,
+                          gender: _genderController.text,
+                          heartDesease: _heartDeseaseController.text,
+                          otherDease: _otherDeseaseController.text,
+                          heart: _settingStore.heartRate,
+                          oxygen: _settingStore.oxygen,
+                        ))),
+              ),
+              context.sizedBox(height: 30),
+            ],
+          ),
         ),
       ),
-    );
-  }
-
-  Widget _buildTitleSetting(BuildContext context, String title) {
-    return MyText.labelMedium(
-      context,
-      title,
-      isBold: true,
     );
   }
 }

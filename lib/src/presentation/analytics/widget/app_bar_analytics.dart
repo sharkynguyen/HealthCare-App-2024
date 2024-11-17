@@ -15,10 +15,7 @@ class _AppBarAnalyticsState extends State<AppBarAnalytics> {
     return Row(
       children: [
         RoundedButton.textAndCustomIcon(
-          context,
-          "Good",
-          IconsaxOutline.tick_circle,
-        ),
+            context, "Good", IconsaxOutline.tick_circle, () {}),
         const Spacer(),
         _buildMenu(),
       ],

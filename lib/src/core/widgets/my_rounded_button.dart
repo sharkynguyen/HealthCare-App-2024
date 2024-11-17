@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
 import 'package:health_care_app/src/core/responsive/app_responsive.dart';
@@ -35,7 +37,7 @@ class RoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: OutlinedButton.styleFrom(
         backgroundColor: buttonColor,
         shape: RoundedRectangleBorder(
@@ -68,11 +70,12 @@ class RoundedButton extends StatelessWidget {
     BuildContext context,
     String str,
     IconData iconData,
+    VoidCallback? onPressed,
   ) {
     return RoundedButton(
       buttonColor: const Color(0xff55C306),
       outlineColor: Colors.transparent,
-      onPressed: () {},
+      onPressed: onPressed,
       widget: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
