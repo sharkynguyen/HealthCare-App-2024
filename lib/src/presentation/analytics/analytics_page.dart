@@ -25,23 +25,21 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
       topPadding: 10,
       horizontalMargin: Constants.horizontalMargin,
       titleWidget: const AppBarCalendar(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // const AppBarAnalytics(),
-            // context.sizedBox(height: 40),
-            // const SizedBox(
-            //   height: 200,
-            //   child: AnalyticsLineChart(
-            //     isShowingMainData: true,
-            //   ),
-            // ),
-            // context.sizedBox(height: 20),
-            _buildTitleAdvices(context, 'Advices'),
-            const ListAdvice(),
-            context.sizedBox(height: 30),
-          ],
-        ),
+      body: Column(
+        children: [
+          // const AppBarAnalytics(),
+          // context.sizedBox(height: 40),
+          // const SizedBox(
+          //   height: 200,
+          //   child: AnalyticsLineChart(
+          //     isShowingMainData: true,
+          //   ),
+          // ),
+          // context.sizedBox(height: 20),
+          _buildTitleAdvices(context, 'Advices'),
+          const Expanded(child: ListAdvice()),
+          // context.sizedBox(height: 30),
+        ],
       ),
     );
   }

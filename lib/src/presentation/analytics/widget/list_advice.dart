@@ -16,11 +16,17 @@ class _ListAdviceState extends State<ListAdvice> {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (context) {
-      return Column(
-          children: _analyticsStore.advices
-              .map((e) => AdviceItem(advice: e.msg!, updatedAt: e.updatedTime!))
-              .toList());
-    });
+    return Observer(
+      builder: (context) {
+        return ListView.builder(
+            itemCount: _analyticsStore.advices.length,
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            itemBuilder: (context, index) => AdviceItem(
+                  advice: _analyticsStore.advices[index].msg!,
+                  updatedAt: _analyticsStore.advices[index].updatedTime!,
+                ));
+      },
+    );
   }
 }
