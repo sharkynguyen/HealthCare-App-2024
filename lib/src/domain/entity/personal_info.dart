@@ -11,6 +11,10 @@ class PersonalInfo {
   String? otherDease;
   double? heart;
   double? oxygen;
+  double? weight;
+  double? height;
+  bool? isPlayingSports;
+  String? sport;
 
   PersonalInfo({
     this.id,
@@ -20,6 +24,10 @@ class PersonalInfo {
     this.otherDease,
     this.heart,
     this.oxygen,
+    this.weight,
+    this.height,
+    this.isPlayingSports,
+    this.sport,
   });
 
   factory PersonalInfo.fromJson(Map<String, dynamic> json) =>

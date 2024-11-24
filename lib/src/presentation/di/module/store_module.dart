@@ -4,6 +4,7 @@ import 'package:health_care_app/src/core/stores/error_store.dart';
 import 'package:health_care_app/src/core/stores/form_store.dart';
 import 'package:health_care_app/src/di/di.dart';
 import 'package:health_care_app/src/domain/repository/adafruit_repository.dart';
+import 'package:health_care_app/src/domain/repository/advice_repository.dart';
 import 'package:health_care_app/src/domain/repository/analytics_repository.dart';
 import 'package:health_care_app/src/domain/repository/calendar_repository.dart';
 import 'package:health_care_app/src/domain/repository/personal_repository.dart';
@@ -52,8 +53,11 @@ class StoreModule {
 
     injector.registerSingleton<DashboardStore>(DashboardStore());
 
-    injector.registerSingleton<HomeStore>(
-        HomeStore(injector<AdafruitRepository>()));
+    injector.registerSingleton<HomeStore>(HomeStore(
+      injector<AdafruitRepository>(),
+      injector<AdviceRepository>(),
+      injector<PersonalRepository>(),
+    ));
 
     injector.registerSingleton<CalendarStore>(
         CalendarStore(injector<CalendarRepository>()));

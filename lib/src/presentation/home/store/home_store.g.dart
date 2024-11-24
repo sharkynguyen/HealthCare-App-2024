@@ -72,12 +72,61 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
+  late final _$aiGeneratedContentAtom =
+      Atom(name: '_HomeStore.aiGeneratedContent', context: context);
+
+  @override
+  String get aiGeneratedContent {
+    _$aiGeneratedContentAtom.reportRead();
+    return super.aiGeneratedContent;
+  }
+
+  @override
+  set aiGeneratedContent(String value) {
+    _$aiGeneratedContentAtom.reportWrite(value, super.aiGeneratedContent, () {
+      super.aiGeneratedContent = value;
+    });
+  }
+
+  late final _$personalInfoAtom =
+      Atom(name: '_HomeStore.personalInfo', context: context);
+
+  @override
+  ObservableList<PersonalInfo> get personalInfo {
+    _$personalInfoAtom.reportRead();
+    return super.personalInfo;
+  }
+
+  @override
+  set personalInfo(ObservableList<PersonalInfo> value) {
+    _$personalInfoAtom.reportWrite(value, super.personalInfo, () {
+      super.personalInfo = value;
+    });
+  }
+
+  late final _$fetchPersonInfoAsyncAction =
+      AsyncAction('_HomeStore.fetchPersonInfo', context: context);
+
+  @override
+  Future<void> fetchPersonInfo() {
+    return _$fetchPersonInfoAsyncAction.run(() => super.fetchPersonInfo());
+  }
+
   late final _$connectToAdafruitAsyncAction =
       AsyncAction('_HomeStore.connectToAdafruit', context: context);
 
   @override
   Future<void> connectToAdafruit() {
     return _$connectToAdafruitAsyncAction.run(() => super.connectToAdafruit());
+  }
+
+  late final _$generateAIContentAsyncAction =
+      AsyncAction('_HomeStore.generateAIContent', context: context);
+
+  @override
+  Future<void> generateAIContent(String prompt) {
+    return _$generateAIContentAsyncAction
+        .run(() => super.generateAIContent(prompt));
   }
 
   late final _$_HomeStoreActionController =
@@ -100,7 +149,9 @@ mixin _$HomeStore on _HomeStore, Store {
 heartRate: ${heartRate},
 oxygen: ${oxygen},
 isConnected: ${isConnected},
-errorMessage: ${errorMessage}
+errorMessage: ${errorMessage},
+aiGeneratedContent: ${aiGeneratedContent},
+personalInfo: ${personalInfo}
     ''';
   }
 }

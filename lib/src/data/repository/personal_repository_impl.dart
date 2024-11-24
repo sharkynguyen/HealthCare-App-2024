@@ -2,13 +2,11 @@ import 'package:health_care_app/src/core/data/network/dio_client.dart';
 import 'package:health_care_app/src/di/di.dart';
 import 'package:health_care_app/src/domain/entity/personal_info.dart';
 import 'package:health_care_app/src/domain/repository/personal_repository.dart';
-import 'package:health_care_app/src/utils/https/app_rest_client.dart';
+
 import 'package:logger/logger.dart';
 
 class PersonalRepositoryImpl extends PersonalRepository {
-  PersonalRepositoryImpl(this.restClient);
-
-  final RestClient restClient;
+  PersonalRepositoryImpl();
 
   @override
   Future<List<PersonalInfo>> getPersonInfo() async {
@@ -44,6 +42,10 @@ class PersonalRepositoryImpl extends PersonalRepository {
           "otherDease": info.otherDease,
           "heart": info.heart,
           "oxygen": info.oxygen,
+          "weight": info.weight,
+          "height": info.height,
+          "isPlayingSports": info.isPlayingSports,
+          "sport": info.sport,
         },
       );
 

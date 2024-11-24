@@ -14,6 +14,10 @@ PersonalInfo _$PersonalInfoFromJson(Map<String, dynamic> json) => PersonalInfo(
       otherDease: json['otherDease'] as String?,
       heart: (json['heart'] as num?)?.toDouble(),
       oxygen: (json['oxygen'] as num?)?.toDouble(),
+      weight: (json['weight'] as num?)?.toDouble(),
+      height: (json['height'] as num?)?.toDouble(),
+      isPlayingSports: json['isPlayingSports'] as bool?,
+      sport: json['sport'] as String?,
     );
 
 Map<String, dynamic> _$PersonalInfoToJson(PersonalInfo instance) =>
@@ -25,4 +29,8 @@ Map<String, dynamic> _$PersonalInfoToJson(PersonalInfo instance) =>
       'otherDease': instance.otherDease,
       'heart': instance.heart,
       'oxygen': instance.oxygen,
+      'weight': instance.weight,
+      'height': instance.height,
+      'isPlayingSports': instance.isPlayingSports,
+      'sport': instance.sport,
     };

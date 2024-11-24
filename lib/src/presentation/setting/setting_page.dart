@@ -26,6 +26,7 @@ class _SettingPageState extends State<SettingPage> {
   late TextEditingController _heightController;
   late TextEditingController _heartDeseaseController;
   late TextEditingController _otherDeseaseController;
+
   bool _isPlayingSports = false;
   String? _selectedGender;
   String? _selectedSport;
@@ -38,13 +39,17 @@ class _SettingPageState extends State<SettingPage> {
   void initState() {
     _ageController =
         TextEditingController(text: _settingStore.personalInfo.first.age);
-    _weightController = TextEditingController(text: '30');
-    _heightController = TextEditingController(text: '190');
+    _weightController = TextEditingController(
+        text: _settingStore.personalInfo.first.weight.toString());
+    _heightController = TextEditingController(
+        text: _settingStore.personalInfo.first.height.toString());
     _selectedGender = _settingStore.personalInfo.first.gender;
+
     _heartDeseaseController = TextEditingController(
         text: _settingStore.personalInfo.first.heartDesease);
     _otherDeseaseController = TextEditingController(
         text: _settingStore.personalInfo.first.otherDease);
+
     super.initState();
   }
 
@@ -62,9 +67,9 @@ class _SettingPageState extends State<SettingPage> {
               const AppBarSetting(),
               context.sizedBox(height: 40),
               MyTextField(
+                textController: _ageController,
                 icon: Icons.person,
                 errorText: null,
-                textController: _ageController,
                 hint: 'Age',
               ),
               context.sizedBox(height: 10),
@@ -190,15 +195,15 @@ class _SettingPageState extends State<SettingPage> {
                   () => _settingStore.updatePersonInfo(
                     PersonalInfo(
                       age: _ageController.text,
-                      // weight: _weightController.text,
-                      // height: _heightController.text,
+                      weight: double.parse(_weightController.text),
+                      height: double.parse(_heightController.text),
                       gender: _selectedGender,
                       heartDesease: _heartDeseaseController.text,
                       otherDease: _otherDeseaseController.text,
                       heart: _settingStore.heartRate,
                       oxygen: _settingStore.oxygen,
-                      // isPlayingSports: _isPlayingSports,
-                      // sport: _selectedSport,
+                      isPlayingSports: _isPlayingSports,
+                      sport: _selectedSport,
                     ),
                   ),
                 ),
